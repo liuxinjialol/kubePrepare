@@ -1,0 +1,11 @@
+---
+- hosts: kubernetes
+  tasks:
+    - name: stop networkmanager
+      service: 
+        name: NetworkManager 
+        state: stopped
+    - name: disable networkmanager
+      service: 
+        name: NetworkManager 
+        state: disabled

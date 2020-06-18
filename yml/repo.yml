@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+    - name: remove yum
+      command: rpm -qa|grep yum|xargs rpm -e --nodeps
+      
+    - name: delete repo
+      command: rm -rf /etc/yum.repo.d/*.repo
+      
+
+- hosts: localhost
+  tasks:
+    - name: scp yum
+      command: scp /downloads/yum/*.rpm  root@{{item}}:/
+      with_items: "{{ groups['all'] }}"
+      
+    - name: scp repo
+      command: scp /downloads/repo/*.repo  root@{{item}}:/etc/yum.repo.d/
+      with_items: "{{ groups['all'] }}"
+
+
+- hosts: all
+  tasks:
+    - name: install yum
+      command: rpm -ivh yum-3.4.3-161.el7.centos.noarch.rpm yum-plugin-fastestmirror-1.1.31-50.el7.noarch.rpm yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+
+    - name: clean yum
+      command: yum clean all
+      
+    - name: list yum
+      command: yum repolist

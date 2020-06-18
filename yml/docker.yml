@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: create docker folder
+      command: mkdir /etc/docker
+      
+    - name: delete repo
+      command: rm -rf /etc/yum.repo.d/*.repo
+
+    - name: clean yum
+      command: yum clean all
+      
+    - name: list yum
+      command: yum repolist
