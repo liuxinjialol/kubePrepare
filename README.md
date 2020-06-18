@@ -1,3 +1,3 @@
 # kubePrepare
 
-初始化脚本
+ansible -i hosts.ini main.yml
