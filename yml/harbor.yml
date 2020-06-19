@@ -1,1 +1,33 @@
+---
+- hosts: localhost
+  tasks:
+    - name: install docker tools
+      yum: yum-utils,device-mapper-persistent-data,lvm2
+      
+    - name: install docker
+      yum: docker-ce-18.06.2.ce-3.el7
+      
+    - name: start docker
+      service: 
+        name: docker 
+        state: started
 
+    - name: enable docker
+      service: 
+        name: docker 
+        enabled: yes
+      
+    - name: install docker compose
+      shell: cp downloads/compose/docker-compose  /usr/local/bin
+      
+    - name: chmod docker compose
+      shell: chmod +x /usr/local/bin/docker-compose
+    
+    - name: cp harbor
+      shell: cp downloads/harbor/harbor-offline-installer-v1.8.1.tgz  /usr/local
+      
+    - name: unzip harbor
+      shell: tar –zxvf  harbor-offline-installer-v1.8.1.tgz
+
+    - name: install harbor
+      shell: /usr/local/harbor/install.sh
