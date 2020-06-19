@@ -4,7 +4,7 @@
   tasks:
     - name: remove yum
       shell: rpm -qa|grep yum|xargs rpm -e --nodeps
-      ignore_errors: true
+      ignore_errors: yes
       
     - name: delete repo
       shell: rm -rf /etc/yum.repos.d/*.repo
