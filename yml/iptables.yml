@@ -2,4 +2,4 @@
 - hosts: kubernetes
   tasks:
     - name: iptables forward accept
-      command: iptables -P FORWARD ACCEPT
+      shell: iptables -P FORWARD ACCEPT

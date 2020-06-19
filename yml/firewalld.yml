@@ -1,7 +1,11 @@
 ---
-- hosts: all
+- hosts: harbor:kubernetes
   tasks:
     - name: stop firewalld
-      service: name=firewalld state=stopped
+      service: 
+        name: firewalld 
+        state: stopped
     - name: disable firewalld
-      service: name=firewalld state=disabled
+      service: 
+        name: firewalld 
+        enabled: no
