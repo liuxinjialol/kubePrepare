@@ -9,10 +9,16 @@
       shell: rm -rf /etc/yum.repos.d/*.repo
       
     - name: scp yum
-      copy: src=yum/*.rpm dest=/tmp force=yes backup=yes
+      copy: src=yum/yum-3.4.3-161.el7.centos.noarch.rpm dest=/tmp force=yes backup=yes
+      
+    - name: scp yum
+      copy: src=yum/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm dest=/tmp force=yes backup=yes
+      
+    - name: scp yum
+      copy: src=yum/yum-plugin-fastestmirror-1.1.31-50.el7.noarch.rpm dest=/tmp force=yes backup=yes
       
     - name: scp repo
-      copy: src=repo/*.repo dest=/etc/yum.repos.d force=yes backup=yes
+      copy: src=repo/CentOS7-Base-163.repo dest=/etc/yum.repos.d force=yes backup=yes
 
     - name: install yum
       shell: rpm -ivh /tmp/yum-3.4.3-161.el7.centos.noarch.rpm /tmp/yum-plugin-fastestmirror-1.1.31-50.el7.noarch.rpm /tmp/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
