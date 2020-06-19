@@ -1,0 +1,20 @@
+- name: config firewalld
+  import_playbook: yml/firewalld.yml
+  
+- name: config network.yml
+  import_playbook: yml/network.yml
+  
+- name: config iptables
+  import_playbook: yml/iptables.yml
+
+- name: config hosts
+  import_playbook: yml/hosts.yml
+
+- name: config docker daemon.json
+  import_playbook: yml/docker.yml
+
+#- name: config repo
+#  import_playbook: yml/repo.yml
+  
+#- name: config harbor
+#  import_playbook: yml/harbor.yml
