@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: harbor
   tasks:
     - name: install docker tools
       yum: yum-utils,device-mapper-persistent-data,lvm2
@@ -18,13 +18,13 @@
         enabled: yes
       
     - name: install docker compose
-      shell: cp downloads/compose/docker-compose  /usr/local/bin
+      copy: src=compose/docker-compose  dest=/usr/local/bin force=yes backup=yes
       
     - name: chmod docker compose
       shell: chmod +x /usr/local/bin/docker-compose
     
     - name: cp harbor
-      shell: cp downloads/harbor/harbor-offline-installer-v1.8.1.tgz  /usr/local
+      copy: src=harbor/harbor-offline-installer-v1.8.1.tgz  dest=/usr/local force=yes backup=yes
       
     - name: unzip harbor
       shell: tar –zxvf  harbor-offline-installer-v1.8.1.tgz
