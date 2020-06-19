@@ -5,6 +5,7 @@
       service: 
         name: NetworkManager 
         state: stopped
+        
     - name: disable networkmanager
       service: 
         name: NetworkManager 
