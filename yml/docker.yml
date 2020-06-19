@@ -3,8 +3,8 @@
   tasks:
     - name: create docker folder
       file: 
-      	path: "/etc/docker"
-    	state: directory
+        path: "/etc/docker"
+        state: directory
     
     - name: scp daemon.json
       shell: scp downloads/docker/daemon.json  root@"{{hostvars[item].ansible_ssh_host}}":/etc/docker
