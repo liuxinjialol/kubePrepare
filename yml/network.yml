@@ -1,5 +1,5 @@
 ---
-- hosts: harbor:kubernetes
+- hosts: kubernetes
   tasks:
     - name: stop networkmanager
       service: 
