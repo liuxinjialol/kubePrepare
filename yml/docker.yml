@@ -6,6 +6,9 @@
         path: "/etc/docker"
         state: directory
     
-    - name: scp daemon.json
-      shell: scp downloads/docker/daemon.json  root@"{{hostvars[item].ansible_ssh_host}}":/etc/docker
-      with_items: "{{ groups['kubernetes'] }}"
+    - name: copy daemon.json
+      copy: src=downloads/docker/daemon.json dest=/etc/docker force=yes backup=yes
+      
+    #- name: scp daemon.json
+      #shell: scp downloads/docker/daemon.json  root@"{{hostvars[item].ansible_ssh_host}}":/etc/docker
+      #with_items: "{{ groups['kubernetes'] }}"
