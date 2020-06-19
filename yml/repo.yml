@@ -1,5 +1,6 @@
 ---
 - hosts: kubernetes
+  gather_facts: False
   tasks:
     - name: remove yum
       shell: rpm -qa|grep yum|xargs rpm -e --nodeps

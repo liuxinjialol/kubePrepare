@@ -1,5 +1,6 @@
 ---
 - hosts: kubernetes
+  gather_facts: False
   tasks:
     - name: create docker folder
       file: 
@@ -8,7 +9,3 @@
     
     - name: copy daemon.json
       copy: src=docker/daemon.json dest=/etc/docker force=yes backup=yes
-      
-    #- name: scp daemon.json
-      #shell: scp downloads/docker/daemon.json  root@"{{hostvars[item].ansible_ssh_host}}":/etc/docker
-      #with_items: "{{ groups['kubernetes'] }}"

@@ -1,0 +1,6 @@
+---
+- hosts: kubernetes
+  tasks:
+    - name: scp files
+      shell: 
+      
