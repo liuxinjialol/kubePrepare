@@ -1,9 +1,3 @@
-- name: config repo
-  import_playbook: repo.yml
-
-- name: config wget
-  import_playbook: wget.yml
-  
 - name: config firewalld
   import_playbook: firewalld.yml
   
@@ -12,12 +6,15 @@
   
 - name: config iptables
   import_playbook: iptables.yml
-  
+
 - name: config hosts
   import_playbook: hosts.yml
- 
-- name: config docker
+
+- name: config docker daemon.json
   import_playbook: docker.yml
+
+#- name: config repo
+#  import_playbook: repo.yml
   
-- name: config harbor
-  import_playbook: harbor.yml
+#- name: config harbor
+#  import_playbook: harbor.yml

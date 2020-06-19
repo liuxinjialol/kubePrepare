@@ -1,14 +1,11 @@
 ---
-- hosts: all
+- hosts: kubernetes
   tasks:
     - name: create docker folder
-      command: mkdir /etc/docker
+      shell: mkdir -p /etc/docker
       
-    - name: delete repo
-      command: rm -rf /etc/yum.repo.d/*.repo
-
-    - name: clean yum
-      command: yum clean all
-      
-    - name: list yum
-      command: yum repolist
+- hosts: localhost
+  tasks:
+    - name: scp daemon.json
+      shell: scp downloads/docker/daemon.json  root@{{hostvars[item].ansible_ssh_host}}:/etc/docker
+      with_items: "{{ groups['kubernetes'] }}"
