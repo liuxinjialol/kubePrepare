@@ -5,6 +5,7 @@
       service: 
         name: firewalld 
         state: stopped
+        
     - name: disable firewalld
       service: 
         name: firewalld 

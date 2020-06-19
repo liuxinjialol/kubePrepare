@@ -4,8 +4,6 @@
     - name: create docker folder
       shell: mkdir -p /etc/docker
       
-- hosts: localhost
-  tasks:
     - name: scp daemon.json
       shell: scp downloads/docker/daemon.json  root@{{hostvars[item].ansible_ssh_host}}:/etc/docker
       with_items: "{{ groups['kubernetes'] }}"
