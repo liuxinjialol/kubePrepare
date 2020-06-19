@@ -6,22 +6,14 @@
       shell: rpm -qa|grep yum|xargs rpm -e --nodeps
       
     - name: delete repo
-      shell: rm -rf /etc/yum.repo.d/*.repo
+      shell: rm -rf /etc/yum.repos.d/*.repo
       
-
-- hosts: localhost
-  tasks:
     - name: scp yum
-      shell: scp downloads/yum/*.rpm  root@{{hostvars[item].ansible_ssh_host}}:/tmp
-      with_items: "{{ groups['kubernetes'] }}"
+      copy: src=yum/*.rpm dest=/tmp force=yes backup=yes
       
     - name: scp repo
-      shell: scp downloads/repo/*.repo  root@{{hostvars[item].ansible_ssh_host}}:/etc/yum.repo.d/
-      with_items: "{{ groups['kubernetes'] }}"
+      copy: src=repo/*.repo dest=/etc/yum.repos.d force=yes backup=yes
 
-
-- hosts: kubernetes
-  tasks:
     - name: install yum
       shell: rpm -ivh /tmp/yum-3.4.3-161.el7.centos.noarch.rpm /tmp/yum-plugin-fastestmirror-1.1.31-50.el7.noarch.rpm /tmp/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
 

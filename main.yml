@@ -13,8 +13,8 @@
 - name: config docker daemon.json
   import_playbook: yml/docker.yml
 
-#- name: config repo
-#  import_playbook: yml/repo.yml
+- name: config repo
+  import_playbook: yml/repo.yml
   
 #- name: config harbor
 #  import_playbook: yml/harbor.yml
