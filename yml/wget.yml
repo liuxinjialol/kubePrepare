@@ -1,7 +1,0 @@
----
-- hosts: all
-  tasks:
-    - name: install wget
-      yum: wget
-      
-
